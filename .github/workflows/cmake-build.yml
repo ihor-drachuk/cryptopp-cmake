@@ -148,7 +148,9 @@ jobs:
 
   Ubuntu:
     name: ${{ matrix.config.name }} (${{ matrix.build-type }})
-    runs-on: ubuntu-latest
+    # ubuntu-22.04 is the newest image that still provides gcc-10 for the
+    # oldest-supported-compiler configuration below.
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
