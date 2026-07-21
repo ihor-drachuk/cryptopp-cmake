@@ -13,7 +13,7 @@ jobs:
         runs: [
           {generator: "Ninja", os: windows-latest},
           {generator: "NMake Makefiles", os: windows-latest},
-          {generator: "Visual Studio 16 2019", os: windows-2019}]
+          {generator: "Visual Studio 17 2022", os: windows-2022}]
     steps:
       - uses: actions/checkout@v4
         with:
