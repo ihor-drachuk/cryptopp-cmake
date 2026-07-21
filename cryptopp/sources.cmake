@@ -424,6 +424,15 @@ set(cryptopp_SOURCES_TEST
     regtest4.cpp
 )
 
+if(NOT CRYPTOPP_BUILD_SHARED)
+    # The static library omits fipstest.cpp to stay free of its DllMain, but
+    # the test sources call its functions, so cryptest compiles it directly.
+    # crypto++ releases containing weidai11/cryptopp#1314 guard DllMain for
+    # DLL builds only - once one is used here, fipstest.cpp can go back to
+    # the library sources unconditionally.
+    list(APPEND cryptopp_SOURCES_TEST fipstest.cpp)
+endif()
+
 # ***** Test headers *****
 set(cryptopp_HEADERS_TEST bench.h factory.h validate.h)
 
