@@ -115,14 +115,10 @@ jobs:
       - name: Install libomp (macports)
         run: |
           port install libomp
-          brew uninstall --ignore-dependencies --zap libomp
+          # Homebrew's libomp would shadow the MacPorts one; drop it if present
+          # (current runner images do not preinstall it).
+          brew uninstall --ignore-dependencies --zap libomp || true
         if: endsWith(matrix.config.name, 'macports')
-
-      - name: Setup XCode
-        uses: mobiledevops/xcode-select-version-action@v1
-        with:
-          xcode-select-version: 13.1
-        if: matrix.generator == 'Xcode'
 
       - name: Configure
         run: |
