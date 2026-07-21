@@ -101,7 +101,9 @@ jobs:
       - name: Setup CMake and Ninja
         uses: lukka/get-cmake@latest
         with:
-          cmakeVersion: "~3.21.0"
+          # CMake 3.21 cannot drive the Xcode versions present on current
+          # runner images; the 3.21 floor stays covered by the Ninja jobs.
+          cmakeVersion: "${{ matrix.generator == 'Xcode' && 'latest' || '~3.21.0' }}"
           ninjaVersion: "1.11.0"
 
       - name: Setup ccache
