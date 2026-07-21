@@ -24,15 +24,11 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
-      - name: Setup Ninja
-        uses: abdes/gha-setup-ninja@master
+      - name: Setup CMake and Ninja
+        uses: lukka/get-cmake@latest
         with:
-          version: 1.11.0
-
-      - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v2.0.1
-        with:
-          cmake-version: 3.21.x
+          cmakeVersion: "~3.21.0"
+          ninjaVersion: "1.11.0"
 
       - name: Setup ccache
         # If ccache behaves badly on windows, skip this step
@@ -98,15 +94,11 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
-      - name: Setup Ninja
-        uses: abdes/gha-setup-ninja@master
+      - name: Setup CMake and Ninja
+        uses: lukka/get-cmake@latest
         with:
-          version: 1.11.0
-
-      - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v2.0.1
-        with:
-          cmake-version: 3.21.x
+          cmakeVersion: "~3.21.0"
+          ninjaVersion: "1.11.0"
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -184,15 +176,11 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
-      - name: Setup Ninja
-        uses: abdes/gha-setup-ninja@master
+      - name: Setup CMake and Ninja
+        uses: lukka/get-cmake@latest
         with:
-          version: 1.11.0
-
-      - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v2.0.1
-        with:
-          cmake-version: 3.21.x
+          cmakeVersion: "~3.21.0"
+          ninjaVersion: "1.11.0"
 
       - name: Install ccache
         shell: cmake -P {0}
