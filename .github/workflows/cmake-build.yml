@@ -10,10 +10,14 @@ jobs:
       fail-fast: false
       matrix:
         build-type: [Release, Debug]
-        runs: [
-          {generator: "Ninja", os: windows-latest},
-          {generator: "NMake Makefiles", os: windows-latest},
-          {generator: "Visual Studio 17 2022", os: windows-2022}]
+        runs:
+          # windows-2022 rather than -latest: crypto++ 8.9.0 uses
+          # stdext::make_checked_array_iterator, removed from the MSVC STL in
+          # VS 18. Return to windows-latest when a crypto++ release ships
+          # https://github.com/weidai11/cryptopp/pull/1339.
+          - {generator: "Ninja", os: windows-2022}
+          - {generator: "NMake Makefiles", os: windows-2022}
+          - {generator: "Visual Studio 17 2022", os: windows-2022}
     steps:
       - uses: actions/checkout@v4
         with:
